@@ -56,18 +56,8 @@ pip install django
 
 Pronto! Seu ambiente de desenvolvimento está configurado e pronto para começar.
 
+---
 
-### 4. Rodando o Projeto
+### 4. Iniciando um Projeto
 
-Após a instalação, inclua um comando para que a pessoa possa ver o projeto funcionando:
-
-
-#### ▶️ Rodando o Servidor de Desenvolvimento
-
-Com o ambiente virtual ativo, execute o seguinte comando para iniciar o servidor:
-
-```bash
-python manage.py runserver
-```
-
-Agora, abra seu navegador e acesse `http://127.0.0.1:8000/`.
+Após a instalação, ... 
