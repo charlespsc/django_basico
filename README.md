@@ -58,6 +58,49 @@ Pronto! Seu ambiente de desenvolvimento está configurado e pronto para começar
 
 ---
 
-### 4. Iniciando um Projeto
+## 🚀 Criando seu Primeiro Projeto Django
 
-Após a instalação, ... 
+Com o ambiente virtual (`venv`) criado e ativado, estamos prontos para usar o Django e construir a base do nosso projeto.
+
+Lembre-se: você sabe que o ambiente está ativo quando o nome dele, como (`venv`), aparece no início da linha do seu terminal.
+
+### 1. Criando o Projeto Principal
+
+Agora vamos usar o comando principal do Django para criar toda a estrutura de arquivos e pastas do nosso projeto.
+
+```bash
+# Sintaxe: django-admin startproject <nome_do_projeto> .
+django-admin startproject setup .
+```
+
+Obs.: `setup` é o nome que escolhemos para o nosso diretório de configurações principal. Você poderia usar `core`, `config` ou o nome do seu site.
+
+### 2. Aplicando as Migrações Iniciais
+
+O Django já vem com recursos prontos, como sistema de autenticação, sessões, painel de admin, etc. Esses recursos precisam de tabelas no banco de dados. O comando `migrate` cria essas tabelas para nós. Por padrão, o Django usará um banco de dados simples chamado `db.sqlite3`, que será criado automaticamente.
+
+```bash
+python manage.py migrate
+```
+
+### 3. Rodando o Servidor de Desenvolvimento ▶️ 
+
+Com o ambiente virtual ativo e o projeto `setup` iniciado, execute o seguinte comando para iniciar o servidor:
+
+```bash
+python manage.py runserver
+```
+
+Agora, abra seu navegador e acesse `http://127.0.0.1:8000/`.
+
+Você deverá ver a página de boas-vindas do Django, com um foguete! 🚀
+
+
+### 4.(Opcional) Criando um Superusuário
+
+Para acessar o painel administrativo do Django, você precisa de um usuário. Vamos criar um:
+
+```bash
+python manage.py createsuperuser
+```
+---
