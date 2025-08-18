@@ -19,5 +19,10 @@ from django.urls import path, include  # Não se esqueça de importar o 'include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),  # Inclui todas as URLs da app 'core'
+
+    # Inclui todas as URLs da app 'core'
+    path('', include('core.urls')),
+
+    # Inclui todas as URLs da app 'produtos'
+    path('produtos/', include('produtos.urls')),
 ]
