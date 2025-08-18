@@ -24,7 +24,8 @@
         </p>
 
         <h2>Formulário de Cadastro</h2>      
-        <form action="" method="">
+        <form action="{% url 'ver_produto' %}" method="post">
+            {% csrf_token %}  <!-- Token CSRF para segurança -->
             <h3>Cadastrar Produto</h3>
             <p>Para cadastrar o produto, preencha os campos abaixo:</p>
             <input type="hidden" name="id" value="{{ produto.id }}">
