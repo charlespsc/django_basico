@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização de Produtos</title>
+</head>
+<body>
+    <header>
+        <h1>Bem-vindo à Visualização de Produtos</h1>
+    </header>
+    <main>
+        <h2>Detalhes do Produto</h2>
+        <p>Este é o produto que você está visualizando.</p>
+        <p>Nome do Produto: {{ nome }}</p>
+        <p>Descrição: Este é um exemplo de produto.</p>
+        <p>Preço: R$ 100,00</p>
+        
+        <a href="{% url 'inserir_produto' %}">Inserir Novo Produto</a>
+        
+    </main>
+    <footer>
+        <p>&copy; 2025 Sua Empresa</p>
+    </footer>   
+</body>
+</html>
