@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualização de Produtos</title>
+    <link rel="stylesheet" href="{% static 'produtos/css/estilo.css' %}">
 </head>
 <body>
     <header>
@@ -12,12 +14,26 @@
     <main>
         <h2>Detalhes do Produto</h2>
         <p>Este é o produto que você está visualizando.</p>
-        <p>Nome do Produto: {{ nome }}</p>
-        <p>Descrição: Este é um exemplo de produto.</p>
-        <p>Preço: R$ 100,00</p>
-        
-        <a href="{% url 'inserir_produto' %}">Inserir Novo Produto</a>
-        
+        <p>
+            <img src="{% static 'produtos/img/produto_exemplo.jpeg' %}" alt="Imagem do Produto" style="width: 300px; height: 200px;">
+        </p>
+        <p>
+        Nome do Produto: {{ nome }}<br>
+        Descrição: Este é um exemplo de produto.<br>
+        Preço: R$ 100,00
+        </p>
+
+        <h2>Formulário de Cadastro</h2>      
+        <form action="" method="">
+            <h3>Cadastrar Produto</h3>
+            <p>Para cadastrar o produto, preencha os campos abaixo:</p>
+            <input type="hidden" name="id" value="{{ produto.id }}">
+            <input type="text" name="nome" placeholder="Digite o nome do produto"><br>
+            <input type="number" name="quantidade" placeholder="Digite a quantidade de produto"><br><br>
+            <button type="submit">Enviar</button>
+        </form>
+
+
     </main>
     <footer>
         <p>&copy; 2025 Sua Empresa</p>
