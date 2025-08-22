@@ -30,7 +30,10 @@
             <p>Para cadastrar o produto, preencha os campos abaixo:</p>
             <input type="hidden" name="id" value="{{ produto.id }}">
             <input type="text" name="nome" placeholder="Digite o nome do produto"><br>
-            <input type="number" name="quantidade" placeholder="Digite a quantidade de produto"><br><br>
+            <input type="number" name="estoque" placeholder="Digite a quantidade de produto"><br>
+            <input type="text" name="preco" placeholder="Digite o preço do produto"><br>
+            <textarea name="descricao" placeholder="Digite a descrição do produto"></textarea><br>
+            <br>
             <button type="submit">Enviar</button>
         </form>
 
