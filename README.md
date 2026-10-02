@@ -1,229 +1,751 @@
-# Projeto Django Básico
+# 🐍 Django Básico — Fundamentos de Desenvolvimento Web
 
-Este é um projeto de estudo para aprender os fundamentos do Django.
+Projeto de estudo desenvolvido com **Django** para praticar os fundamentos de uma aplicação web em Python.
 
-**Pré-requisitos:** 
+O projeto evolui de uma página simples de **"Olá, Mundo!"** para uma aplicação com uma área de **produtos**, incluindo modelagem de dados, migrations, templates, formulários, arquivos estáticos e integração com SQLite.
 
-    ✅ Pré-requisitos
-
-    Antes de começar, garanta que você tenha instalado:
-    * [Python 3.8+](https://www.python.org/downloads/)
-    * [Git](https://git-scm.com/)
-    
-## 🚀 Começando
-
-Antes de rodar o projeto ou instalar qualquer dependência, o passo mais importante é criar um ambiente virtual (`venv`). Isso garante que as bibliotecas do projeto fiquem isoladas do seu sistema operacional.
-
-
-### 1. Crie o Ambiente Virtual
-
-Com o projeto aberto no VS Code, abra o terminal integrado e execute o seguinte comando:
-
-```bash
-python -m venv venv
-```
-
-### 2. Ativando o Ambiente Virtual
-
-Agora que o ambiente foi criado, precisamos "ativá-lo". A ativação faz com que o seu terminal passe a usar o Python e o `pip` de dentro da pasta `venv`.
-
-#### * No Windows (PowerShell/CMD):
-
-```PowerShell
-.\venv\Scripts\activate
-```
-
-#### * No macOS ou Linux:
-
-```bash
-source venv/bin/activate
-```
-
-Dica: Após ativar, você verá (venv) no início da linha do seu terminal, indicando que o ambiente está ativo!
-
-### 3. Instalando as Dependências
-
-Com o ambiente ativo, podemos finalmente instalar o Django e outras bibliotecas necessárias. Para isso, use o gerenciador de pacotes `pip`:
-
-```bash
-pip install -r requirements.txt
-```
-
-Obs.: Se o projeto ainda não tiver um arquivo requirements.txt, você pode começar instalando o Django manualmente:
-```bash
-pip install django
-```
-
-Pronto! Seu ambiente de desenvolvimento está configurado e pronto para começar.
+> Este repositório representa uma etapa prática de aprendizagem dos principais conceitos do framework Django.
 
 ---
 
-## 🚀 Criando seu Primeiro Projeto Django
+## 🎯 Objetivo
 
-Com o ambiente virtual (`venv`) criado e ativado, estamos prontos para usar o Django e construir a base do nosso projeto.
+O objetivo deste projeto é compreender a estrutura fundamental de uma aplicação Django e o fluxo:
 
-Lembre-se: você sabe que o ambiente está ativo quando o nome dele, como (`venv`), aparece no início da linha do seu terminal.
-
-### 1. Criando o Projeto Principal
-
-Agora vamos usar o comando principal do Django para criar toda a estrutura de arquivos e pastas do nosso projeto.
-
-```bash
-# Sintaxe: django-admin startproject <nome_do_projeto> .
-django-admin startproject setup .
+```text
+Requisição HTTP
+      │
+      ▼
+    URLconf
+      │
+      ▼
+    View
+      │
+      ├──────────────► Template
+      │
+      ▼
+    Model
+      │
+      ▼
+   SQLite
 ```
 
-Obs.: `setup` é o nome que escolhemos para o nosso diretório de configurações principal. Você poderia usar `core`, `config` ou o nome do seu site.
+Durante o projeto são praticados conceitos como:
 
-### 2. Aplicando as Migrações Iniciais
+- criação de um projeto Django;
+- criação de aplicações (`apps`);
+- configuração do `settings.py`;
+- roteamento com `urls.py`;
+- criação de views;
+- utilização de templates;
+- arquivos estáticos;
+- definição de models;
+- migrations;
+- operações de persistência;
+- formulários HTML;
+- proteção CSRF;
+- painel administrativo do Django.
 
-O Django já vem com recursos prontos, como sistema de autenticação, sessões, painel de admin, etc. Esses recursos precisam de tabelas no banco de dados. O comando `migrate` cria essas tabelas para nós. Por padrão, o Django usará um banco de dados simples chamado `db.sqlite3`, que será criado automaticamente.
+---
+
+# 🧰 Tecnologias
+
+| Tecnologia | Utilização |
+|---|---|
+| **Python** | Linguagem principal |
+| **Django 5.2.5** | Framework web |
+| **SQLite** | Banco de dados |
+| **HTML5** | Estrutura das páginas |
+| **CSS3** | Estilização |
+| **Git** | Controle de versão |
+
+A versão do Django está indicada no arquivo de configurações gerado pelo projeto:
+
+```text
+Django 5.2.5
+```
+
+---
+
+# 🏗️ Estrutura do projeto
+
+```text
+django_basico/
+│
+├── core/
+│   ├── migrations/
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+│
+├── produtos/
+│   ├── migrations/
+│   │   └── 0001_initial.py
+│   ├── templates/
+│   │   └── ver_produto.html
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+│
+├── setup/
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+├── templates/
+│   └── static/
+│       └── produtos/
+│           ├── css/
+│           │   └── estilo.css
+│           └── img/
+│               └── produto_exemplo.jpeg
+│
+├── manage.py
+├── .gitignore
+└── README.md
+```
+
+---
+
+# 🧩 Projeto x App no Django
+
+Uma das ideias fundamentais praticadas neste projeto é a diferença entre **projeto** e **aplicação**.
+
+### Projeto
+
+O diretório:
+
+```text
+setup/
+```
+
+concentra as configurações principais:
+
+- `settings.py`
+- `urls.py`
+- `asgi.py`
+- `wsgi.py`
+
+### Aplicações
+
+O projeto possui duas apps:
+
+```text
+core/
+produtos/
+```
+
+A app `core` apresenta a página inicial.
+
+A app `produtos` concentra a funcionalidade relacionada aos produtos.
+
+Essa separação permite organizar uma aplicação Django em módulos com responsabilidades específicas.
+
+---
+
+# 🏠 Aplicação `core`
+
+A app `core` possui uma view inicial:
+
+```python
+def home(request):
+    return HttpResponse(
+        "<h1>Olá, Mundo! Esta é a página principal da app core.</h1>"
+    )
+```
+
+A rota está configurada em:
+
+```text
+core/urls.py
+```
+
+```text
+GET /
+```
+
+Ao acessar:
+
+```text
+http://127.0.0.1:8000/
+```
+
+a requisição é direcionada para a view `home`.
+
+---
+
+# 📦 Aplicação `produtos`
+
+A app `produtos` representa a primeira funcionalidade baseada em banco de dados.
+
+Ela possui:
+
+- model `Produto`;
+- views;
+- URLs;
+- template HTML;
+- arquivos CSS;
+- imagem estática;
+- migration;
+- registro no Django Admin.
+
+---
+
+# 🗃️ Model `Produto`
+
+O modelo é definido em:
+
+```text
+produtos/models.py
+```
+
+Estrutura:
+
+```text
+Produto
+├── id
+├── nome
+├── preco
+├── descricao
+└── estoque
+```
+
+Correspondência dos campos:
+
+| Campo | Tipo | Configuração |
+|---|---|---|
+| `id` | BigAutoField | Chave primária automática |
+| `nome` | CharField | máximo de 100 caracteres |
+| `preco` | DecimalField | 10 dígitos / 2 casas |
+| `descricao` | TextField | opcional |
+| `estoque` | IntegerField | padrão `0` |
+
+O model também define:
+
+```python
+ordering = ['nome']
+```
+
+Portanto, a ordenação padrão dos produtos é pelo nome.
+
+---
+
+# 🗄️ Banco de dados
+
+O projeto utiliza o banco padrão:
+
+```text
+SQLite
+```
+
+Configuração atual:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+```
+
+O arquivo `db.sqlite3` é criado na raiz do projeto após a execução das migrations.
+
+---
+
+# 🔄 Migrations
+
+O projeto possui uma migration inicial:
+
+```text
+produtos/migrations/0001_initial.py
+```
+
+Ela cria a tabela correspondente ao model `Produto`.
+
+Para aplicar as migrations:
 
 ```bash
 python manage.py migrate
 ```
 
-### 3. Rodando o Servidor de Desenvolvimento ▶️ 
-
-Com o ambiente virtual ativo e o projeto `setup` iniciado, execute o seguinte comando para iniciar o servidor:
+Para criar novas migrations depois de alterar um model:
 
 ```bash
-python manage.py runserver
+python manage.py makemigrations
 ```
 
-Agora, abra seu navegador e acesse `http://127.0.0.1:8000/`.
+E depois:
 
-Você deverá ver a página de boas-vindas do Django, com um foguete! 🚀
+```bash
+python manage.py migrate
+```
 
+---
 
-### 4.(Opcional) Criando um Superusuário
+# 🌐 URLs
 
-Para acessar o painel administrativo do Django, você precisa de um usuário. Vamos criar um:
+O projeto principal possui o seguinte roteamento:
+
+```text
+setup/urls.py
+```
+
+```text
+/admin/
+    └── Django Admin
+
+/
+    └── core.urls
+
+/produtos/
+    └── produtos.urls
+```
+
+A app `produtos` disponibiliza:
+
+| Método | URL | Função |
+|---|---|---|
+| `GET` | `/produtos/ver_produto/` | Exibe a página de produto |
+| `POST` | `/produtos/ver_produto/` | Cadastra um produto |
+| `GET` | `/produtos/inserir_produto/` | Exibe página de inserção |
+
+---
+
+# 📝 Cadastro de produtos
+
+A view `ver_produto` trabalha com dois métodos HTTP.
+
+### GET
+
+Quando recebe:
+
+```http
+GET /produtos/ver_produto/
+```
+
+a aplicação renderiza:
+
+```text
+ver_produto.html
+```
+
+e apresenta a interface do produto.
+
+### POST
+
+Quando o formulário é enviado:
+
+```http
+POST /produtos/ver_produto/
+```
+
+a view recupera:
+
+```text
+nome
+preco
+descricao
+estoque
+```
+
+cria uma instância de:
+
+```python
+Produto(...)
+```
+
+e salva o registro:
+
+```python
+produto.save()
+```
+
+---
+
+# 🔐 Proteção CSRF
+
+O formulário utiliza o mecanismo de proteção CSRF do Django:
+
+```django
+{% csrf_token %}
+```
+
+Esse recurso é importante para proteger requisições de alteração enviadas através de formulários.
+
+---
+
+# 🎨 Templates e arquivos estáticos
+
+O projeto utiliza um template:
+
+```text
+produtos/templates/ver_produto.html
+```
+
+O template utiliza:
+
+```django
+{% load static %}
+```
+
+para carregar os arquivos estáticos.
+
+CSS:
+
+```text
+templates/static/produtos/css/estilo.css
+```
+
+Imagem:
+
+```text
+templates/static/produtos/img/produto_exemplo.jpeg
+```
+
+A configuração de arquivos estáticos está no:
+
+```text
+setup/settings.py
+```
+
+---
+
+# 🛠️ Django Admin
+
+O model `Produto` está registrado no painel administrativo:
+
+```python
+admin.site.register(Produto)
+```
+
+Para criar um usuário administrador:
 
 ```bash
 python manage.py createsuperuser
 ```
----
 
-## 🏗️ Criando sua Primeira Aplicação (App)
-
-No Django, um "projeto" é o contêiner principal para as configurações e aplicações. Uma "aplicação" (ou app) é um módulo que faz algo específico, como um blog, uma enquete, ou um sistema de autenticação. Um projeto pode ser composto por várias aplicações, tornando-o modular e organizado.
-
-Vamos criar nossa primeira aplicação, que chamaremos de `core`.
-
-### 1. Usando o Comando startapp
-Certifique-se de que seu ambiente virtual esteja ativo e que você esteja na pasta raiz do projeto (a mesma onde está o arquivo manage.py). Agora, execute o seguinte comando:
-
-```bash
-# Sintaxe: python manage.py startapp <nome_da_app>
-python manage.py startapp core
-```
-O Django criará automaticamente uma nova pasta chamada `core` com uma estrutura de arquivos padrão para uma aplicação:
-
-```
-Django_basico/
-├── venv/
-├── core/             <-- Sua nova aplicação!
-│   ├── migrations/
-│   │   └── __init__.py
-│   ├── __init__.py
-│   ├── admin.py      <-- Para registrar seus modelos no painel Admin
-│   ├── apps.py       <-- Configurações da sua aplicação
-│   ├── models.py     <-- Onde você define a estrutura do banco de dados
-│   ├── tests.py      <-- Para escrever testes para sua aplicação
-│   └── views.py      <-- Onde fica a lógica das suas páginas
-├── setup/
-└── manage.py
-```
-
-### 2. Registrando a Nova Aplicação
-
-Agora que a aplicação foi criada, precisamos "avisar" ao projeto principal do Django que ela existe e deve ser utilizada.
-
-Abra o arquivo de configurações principal do seu projeto: `setup/settings.py`.
-
-Procure pela lista chamada `INSTALLED_APPS` e adicione o nome da sua nova aplicação no final.
-
-```
-# setup/settings.py
-
-# ... (outras configurações)
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    
-    # Minhas Apps
-    'core',  # Adicione o nome da sua app aqui
-]
-
-# ... (outras configurações)
-```
-Por que isso é importante? Registrar a app em INSTALLED_APPS permite que o Django encontre os modelos, URLs, templates e outros componentes da sua aplicação. Sem isso, a aplicação simplesmente não será reconhecida pelo projeto.
-
-
-### 3. Criando a Primeira View e URL
-
-Agora, vamos fazer algo simples: criar uma página de "Olá, Mundo!" para testar se nossa `app` está funcionando.
-
-#### Passo 1: Crie a View
-
-A view é uma função Python que recebe uma requisição web e retorna uma resposta. Abra o arquivo `core/views.py` e adicione o seguinte código:
-
-```python
-# core/views.py
-
-from django.http import HttpResponse
-
-def home(request):
-    return HttpResponse("<h1>Olá, Mundo! Esta é a página principal da app core.</h1>")
-```
-
-#### Passo 2: Configure as URLs da App
-
-Precisamos de um "endereço" (URL) para acessar essa `view`. Crie um novo arquivo chamado `urls.py` dentro da pasta `core`:
-
-```python
-# core/urls.py
-
-from django.urls import path
-from . import views  # Importa as views da nossa app 'core'
-
-urlpatterns = [
-    path('', views.home, name='home'),  # A URL raiz ('') chama a view 'home'
-]
-```
-
-#### Passo 3: Conecte as URLs da App ao Projeto Principal
-
-Por fim, precisamos dizer ao nosso projeto principal para incluir as URLs da nossa `app`. Abra o arquivo de URLs do projeto: `setup/urls.py` e modifique-o:
-
-```python
-# setup/urls.py
-
-from django.contrib import admin
-from django.urls import path, include  # Não se esqueça de importar o 'include'
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('core.urls')),  # Inclui todas as URLs da app 'core'
-]
-```
-O comando `include` funciona como um ponteiro. Ele diz: "Sempre que alguém acessar a URL raiz (`''`) do site, vá procurar por mais instruções no arquivo `core.urls`".
-
-
-### 4. Testando a Nova Página
-
-Com tudo configurado, inicie o servidor novamente:
+Depois de iniciar o servidor:
 
 ```bash
 python manage.py runserver
 ```
 
-Agora, ao acessar http://127.0.0.1:8000/, você não verá mais a página do foguete, mas sim a mensagem que definimos na nossa view: "Olá, Mundo!".
+acesse:
 
-Sucesso! Você criou e integrou sua primeira aplicação ao projeto. Este é o fluxo de trabalho padrão no Django: criar `apps` para cada funcionalidade, definir suas `views` e `URLs`, e conectá-las ao projeto principal.
+```text
+http://127.0.0.1:8000/admin/
+```
+
+---
+
+# ▶️ Executando o projeto
+
+## 1. Pré-requisitos
+
+É necessário possuir:
+
+- Python 3.8 ou superior;
+- Git.
+
+A versão do Python utilizada pelo projeto deve ser compatível com o Django instalado.
+
+---
+
+## 2. Clonar o repositório
+
+```bash
+git clone https://github.com/SEU_USUARIO/django_basico.git
+```
+
+Entrar na pasta:
+
+```bash
+cd django_basico
+```
+
+---
+
+## 3. Criar o ambiente virtual
+
+```bash
+python -m venv venv
+```
+
+### Windows
+
+PowerShell:
+
+```powershell
+.\venv\Scripts\activate
+```
+
+### Linux / macOS
+
+```bash
+source venv/bin/activate
+```
+
+Quando o ambiente estiver ativo, o terminal normalmente exibirá:
+
+```text
+(venv)
+```
+
+---
+
+# 📦 Instalação do Django
+
+O repositório atual **não possui um `requirements.txt`**.
+
+Por isso, em um ambiente novo, instale o Django:
+
+```bash
+pip install django
+```
+
+Para conferir:
+
+```bash
+python -m django --version
+```
+
+O projeto foi desenvolvido com:
+
+```text
+Django 5.2.5
+```
+
+---
+
+# 🗄️ Aplicar as migrations
+
+Com o ambiente virtual ativo:
+
+```bash
+python manage.py migrate
+```
+
+Isso cria as tabelas necessárias no SQLite, incluindo a estrutura do model `Produto`.
+
+---
+
+# ▶️ Iniciar o servidor
+
+```bash
+python manage.py runserver
+```
+
+A aplicação estará disponível em:
+
+```text
+http://127.0.0.1:8000/
+```
+
+---
+
+# 🔗 Principais páginas
+
+### Página inicial
+
+```text
+http://127.0.0.1:8000/
+```
+
+### Visualização / cadastro de produto
+
+```text
+http://127.0.0.1:8000/produtos/ver_produto/
+```
+
+### Inserção de produto
+
+```text
+http://127.0.0.1:8000/produtos/inserir_produto/
+```
+
+### Django Admin
+
+```text
+http://127.0.0.1:8000/admin/
+```
+
+---
+
+# 🧪 Testes
+
+As apps possuem arquivos preparados para testes:
+
+```text
+core/tests.py
+produtos/tests.py
+```
+
+No estado atual do projeto, esses arquivos ainda contêm apenas a estrutura inicial criada pelo Django.
+
+Para executar a suíte de testes:
+
+```bash
+python manage.py test
+```
+
+A próxima evolução natural seria criar testes para:
+
+- acesso às URLs;
+- resposta das views;
+- criação de produtos;
+- validação dos campos;
+- persistência no banco;
+- acesso ao Django Admin.
+
+---
+
+# 🔄 Fluxo da aplicação
+
+Um exemplo do cadastro de produto:
+
+```text
+Usuário
+   │
+   │ POST
+   ▼
+URL /produtos/ver_produto/
+   │
+   ▼
+View ver_produto()
+   │
+   ▼
+Produto(...)
+   │
+   ▼
+produto.save()
+   │
+   ▼
+SQLite
+   │
+   ▼
+HttpResponse
+```
+
+Esse fluxo demonstra uma das ideias fundamentais do Django:
+
+```text
+URL → View → Model → Banco
+       │
+       ▼
+    Template
+```
+
+---
+
+# 📚 Conceitos praticados
+
+Este projeto permite praticar:
+
+- Python;
+- Django;
+- arquitetura MVT;
+- projetos e apps;
+- URLs;
+- views;
+- models;
+- migrations;
+- ORM;
+- SQLite;
+- templates;
+- arquivos estáticos;
+- formulários HTML;
+- CSRF;
+- Django Admin;
+- ambientes virtuais;
+- testes automatizados.
+
+---
+
+# 🎓 Contexto de aprendizagem
+
+Este projeto representa uma etapa introdutória de desenvolvimento web com Django.
+
+A evolução pode ser entendida em etapas:
+
+```text
+Django
+  │
+  ├── Projeto
+  │
+  ├── App
+  │
+  ├── URL
+  │
+  ├── View
+  │
+  ├── Template
+  │
+  ├── Model
+  │
+  ├── Migration
+  │
+  └── Banco de Dados
+```
+
+A partir dessa base, o projeto pode evoluir para uma aplicação mais completa utilizando autenticação, formulários Django, CRUD completo, APIs REST, testes e banco de dados externo.
+
+---
+
+# 🚧 Próximas melhorias
+
+Algumas evoluções naturais para este projeto:
+
+- [ ] criar `requirements.txt`;
+- [ ] mover a `SECRET_KEY` para variável de ambiente;
+- [ ] desativar `DEBUG` em ambiente de produção;
+- [ ] configurar `ALLOWED_HOSTS`;
+- [ ] criar CRUD completo de produtos;
+- [ ] utilizar Django Forms;
+- [ ] utilizar mensagens do Django;
+- [ ] criar páginas de listagem e edição;
+- [ ] adicionar validações de formulário;
+- [ ] criar testes automatizados;
+- [ ] adicionar autenticação;
+- [ ] melhorar o Django Admin;
+- [ ] utilizar PostgreSQL;
+- [ ] criar API REST com Django REST Framework;
+- [ ] containerizar a aplicação com Docker;
+- [ ] configurar CI com GitHub Actions.
+
+---
+
+# ⚠️ Observações importantes
+
+Este é um **projeto de estudo** e utiliza configurações apropriadas para desenvolvimento local.
+
+O arquivo `setup/settings.py` contém atualmente:
+
+```python
+DEBUG = True
+```
+
+e uma `SECRET_KEY` diretamente no código.
+
+Essas configurações não devem ser utilizadas dessa forma em produção.
+
+O projeto também não possui atualmente um `requirements.txt`, portanto a instalação das dependências precisa ser feita manualmente ou esse arquivo deve ser criado como uma melhoria futura.
+
+---
+
+## 👨‍💻 Autor
+
+**Charles Pereira**
+
+Tecnologia • Desenvolvimento • Python • Django • Banco de Dados • Infraestrutura • Educação Tecnológica
+
+---
+
+⭐ Se este projeto foi útil para você, considere deixar uma estrela no repositório.
